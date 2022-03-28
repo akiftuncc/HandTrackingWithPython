@@ -1,3 +1,4 @@
 # HandTrackingWithPython
-Automatically detecs your hands\n
+Automatically detecs your hands
+
 Still working on that
