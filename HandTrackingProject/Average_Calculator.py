@@ -25,7 +25,8 @@ while z:
         except:
             z = False
             break
-
+if division == 0:
+    print("xlistesi and ylistesi and zlistesi are emtpy")
 for i in range(21):
     xlist[i] /= division
     ylist[i] /= division

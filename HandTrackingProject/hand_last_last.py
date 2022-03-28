@@ -1,18 +1,17 @@
 import cv2
 import mediapipe as mp
 import funcs_last_last
-
-commandsX = ["nahX","peaceX"]
-commandsY = ["nahY","peaceY"]
-commandsZ = ["nahZ","peaceZ"]
+import numpy as np
+commandsX = ["nahX","peaceX","fuckX"]
+commandsY = ["nahY","peaceY","fuckY"]
+commandsZ = ["nahZ","peaceZ","fuckZ"]
 
 xortlist = []
 yortlist = []
 zortlist = []
-
-xeq1_list = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
-yeq1_list = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
-zeq1_list = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+xeq1_list = []
+yeq1_list = []
+zeq1_list = []
 
 for i in range(len(commandsX)):
     x8 = commandsX[i]
@@ -21,10 +20,20 @@ for i in range(len(commandsX)):
     x1listesi = open(f"D:/Users/akif/PycharmProjects/HandTrackingProject/txtFiles/{x8}.txt", "r")
     y1listesi = open(f"D:/Users/akif/PycharmProjects/HandTrackingProject/txtFiles/{y8}.txt", "r")
     z1listesi = open(f"D:/Users/akif/PycharmProjects/HandTrackingProject/txtFiles/{z8}.txt", "r")
-
-    funcs_last_last.listappender(x1listesi, xortlist)  # xort list'i oluşturur   21 HANE
+    xortlist.append([])
+    yortlist.append([])
+    zortlist.append([])
+    funcs_last_last.listappender(x1listesi, xortlist)  # xort list oluşur 2 boyutlu olarak şuanda 2*21
     funcs_last_last.listappender(y1listesi, yortlist)
     funcs_last_last.listappender(z1listesi, zortlist)
+
+    xeq1_list.append([])
+    yeq1_list.append([])
+    zeq1_list.append([])
+    for j in range(21):
+        xeq1_list[i].append([]) #xeq1_list oluşur 3 boyutlu olarak şuanda 2*21*21
+        yeq1_list[i].append([])
+        zeq1_list[i].append([])
 
 funcs_last_last.listminus(xortlist,xeq1_list) #xeq1_list'i oluşturur (alınan ortalamaların farkı)  ortalama değerler için olan fark
 funcs_last_last.listminus(yortlist,yeq1_list)
@@ -64,25 +73,28 @@ while count < 1500:
             y_current.append(y0)
             z_current.append(z0)
 
-        funcs_last_last.listminus(x_current, xeq_list)  #x_current = 21 values
-        funcs_last_last.listminus(y_current, yeq_list)
-        funcs_last_last.listminus(z_current, zeq_list)
+        funcs_last_last.listminus_current(x_current, xeq_list)  #x_current = 21 values
+        funcs_last_last.listminus_current(y_current, yeq_list)
+        funcs_last_last.listminus_current(z_current, zeq_list)
+        last_list = []
+        for i in range(len(commandsX)):
+            xWell = funcs_last_last.translator(xeq_list,xeq1_list)
+            yWell = funcs_last_last.translator(yeq_list,yeq1_list)
+            zWell = funcs_last_last.translator(zeq_list,zeq1_list)
 
-        xWell = funcs_last_last.translator(xeq_list,xeq1_list)
-        yWell = funcs_last_last.translator(yeq_list,yeq1_list)
-        zWell = funcs_last_last.translator(zeq_list,zeq1_list)
-        last_value = xWell*yWell*zWell
+            last_value = xWell[i]*yWell[i]*zWell[i]
+            last_list.append(last_value)
 
-        print(last_value)
+        max_value = 0
+        last_of = 99
+        for i in range(len(commandsX)):
+            if max_value < last_list[i]:
+                max_value = last_list[i]
+                last_of = i
 
-        """if last_value > 60000:
-            cv2.putText(img, "SENI SEVIYORUM", (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
 
-        if last_value > 150000:
-            cv2.putText(img, "NAH CEKMEE", (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
+        cv2.putText(img, commandsX[last_of], (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
 
-        if xWell*yWell > 6000:
-            cv2.putText(img, "PEACE", (10, 80), cv2.FONT_HERSHEY_PLAIN, 2, (255, 5, 255),2)"""
 
     cv2.putText(img, "__________", (160, 130), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
     cv2.putText(img, "__________", (160, 380), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)

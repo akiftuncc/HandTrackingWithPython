@@ -1,31 +1,41 @@
+
 def listappender(xyztext,xyzlist):
-    for i in xyztext:
-        xyzlist.append(float(i[:-1]))
+    for j in xyztext:
+        xyzlist[len(xyzlist)-1].append(float(j[:-1]))
 
 def listminus(lists,xeqlists):     #(xortlist,xeq1_list)
-    counti = -1
+    # xort list oluşur 2 boyutlu olarak şuanda 2*21
+    # xeq1_list oluşur 3 boyutlu olarak şuanda 2*21*21
     for i in range(len(lists)):
-        counti += 1
-        countj = -1
         for j in range(21):
-            countj += 1
-            val = abs(lists[i]-lists[countj])
-            xeqlists[counti].append(val)
-        if counti == 20:
-            counti = -1
+            for k in range(21):
+                val = lists[i][j]-lists[i][k]
+                xeqlists[i][j].append(abs(val))
+
+def listminus_current(xcurrent,xeqlists):
+    for i in range(21):
+        for j in range(21):
+            val = xcurrent[i]-xcurrent[j]
+            xeqlists[i].append(abs(val))
 
 
 def translator(currentlist,avglist):   #zeqlist   zeq1list
-    countValues = 0
-    counti = 0
+    liste = []
     for i in range(len(avglist)):
-        counti+=1
-        countj = 0
+        count = 0
         for j in range(21):
-            countj +=1
-            if avglist[i][j]*8/10 < currentlist[i][j] and avglist[i][j]*12/10 > currentlist[i][j]:
-                countValues += 1
-    return countValues
+            for k in range(21):
+                a = currentlist[j][k]
+                b = avglist[i][j][k]
+                if a*12/10 > b and a*8/10 < b:
+                    count+=1
+        liste.append(count)
+    return liste
+
+
+
+
+
 
 
 lists = ["42 eleman"]
