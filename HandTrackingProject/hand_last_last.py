@@ -2,9 +2,9 @@ import cv2
 import mediapipe as mp
 import funcs_last_last
 import numpy as np
-commandsX = ["nahX","peaceX","fuckX"]
-commandsY = ["nahY","peaceY","fuckY"]
-commandsZ = ["nahZ","peaceZ","fuckZ"]
+commandsX = ["fourfingersX1","fourfingersX2","fourfingersX3","fivefingersX1","fivefingersX2","fivefingersX3"]
+commandsY = ["fourfingersY1","fourfingersY2","fourfingersY3","fivefingersY1","fivefingersY2","fivefingersY3"]
+commandsZ = ["fourfingersZ1","fourfingersZ2","fourfingersZ3","fivefingersZ1","fivefingersZ2","fivefingersZ3"]
 
 xortlist = []
 yortlist = []
@@ -82,7 +82,7 @@ while count < 1500:
             yWell = funcs_last_last.translator(yeq_list,yeq1_list)
             zWell = funcs_last_last.translator(zeq_list,zeq1_list)
 
-            last_value = xWell[i]*yWell[i]*zWell[i]
+            last_value = xWell[i]+yWell[i]+zWell[i]
             last_list.append(last_value)
 
         max_value = 0
