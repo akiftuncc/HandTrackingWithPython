@@ -1,10 +1,13 @@
-xlistesi = open("D:/Users/akif/PycharmProjects/HandTrackingProject/x.txt","r")
-ylistesi = open("D:/Users/akif/PycharmProjects/HandTrackingProject/y.txt","r")
-zlistesi = open("D:/Users/akif/PycharmProjects/HandTrackingProject/z.txt","r")
+# Takes x,y,z values to txt files
+# Creates new txt file with average value of x,y,z files
 
-x1listesi = open("D:/Users/akif/PycharmProjects/HandTrackingProject/x1.txt","w")
-y1listesi = open("D:/Users/akif/PycharmProjects/HandTrackingProject/y1.txt","w")
-z1listesi = open("D:/Users/akif/PycharmProjects/HandTrackingProject/z1.txt","w")
+xlistesi = open("x.txt","r")
+ylistesi = open("y.txt","r")
+zlistesi = open("z.txt","r")
+
+x1listesi = open("x1.txt","w")
+y1listesi = open("y1.txt","w")
+z1listesi = open("z1.txt","w")
 
 xlist = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ylist = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -27,13 +30,14 @@ while z:
             break
 if division == 0:
     print("xlistesi and ylistesi and zlistesi are emtpy")
-for i in range(21):
-    xlist[i] /= division
-    ylist[i] /= division
-    zlist[i] /= division
-    x1listesi.write(str(xlist[i])+"\n")
-    y1listesi.write(str(ylist[i]) + "\n")
-    z1listesi.write(str(zlist[i]) + "\n")    
+else:
+    for i in range(21):
+        xlist[i] /= division
+        ylist[i] /= division
+        zlist[i] /= division
+        x1listesi.write(str(xlist[i])+"\n")
+        y1listesi.write(str(ylist[i]) + "\n")
+        z1listesi.write(str(zlist[i]) + "\n")
 
 xlistesi.close()
 ylistesi.close()

@@ -1,10 +1,10 @@
 import cv2
 import mediapipe as mp
 import funcs_last_last
-import numpy as np
-commandsX = ["fourfingersX1","fourfingersX2","fourfingersX3","fivefingersX1","fivefingersX2","fivefingersX3"]
-commandsY = ["fourfingersY1","fourfingersY2","fourfingersY3","fivefingersY1","fivefingersY2","fivefingersY3"]
-commandsZ = ["fourfingersZ1","fourfingersZ2","fourfingersZ3","fivefingersZ1","fivefingersZ2","fivefingersZ3"]
+
+commandsX = ["peaceX","fistX","fivefingersX"] #write txt files here
+commandsY = ["PeaceY","fistY","fivefingersY"]
+commandsZ = ["peaceZ","fistZ","fivefingersZ"]
 
 xortlist = []
 yortlist = []
@@ -17,9 +17,9 @@ for i in range(len(commandsX)):
     x8 = commandsX[i]
     y8 = commandsY[i]
     z8 = commandsZ[i]
-    x1listesi = open(f"D:/Users/akif/PycharmProjects/HandTrackingProject/txtFiles/{x8}.txt", "r")
-    y1listesi = open(f"D:/Users/akif/PycharmProjects/HandTrackingProject/txtFiles/{y8}.txt", "r")
-    z1listesi = open(f"D:/Users/akif/PycharmProjects/HandTrackingProject/txtFiles/{z8}.txt", "r")
+    x1listesi = open(f"txtFiles/{x8}.txt", "r")
+    y1listesi = open(f"txtFiles/{y8}.txt", "r")
+    z1listesi = open(f"txtFiles/{z8}.txt", "r")
     xortlist.append([])
     yortlist.append([])
     zortlist.append([])
@@ -77,13 +77,15 @@ while count < 1500:
         funcs_last_last.listminus_current(y_current, yeq_list)
         funcs_last_last.listminus_current(z_current, zeq_list)
         last_list = []
-        for i in range(len(commandsX)):
-            xWell = funcs_last_last.translator(xeq_list,xeq1_list)
-            yWell = funcs_last_last.translator(yeq_list,yeq1_list)
-            zWell = funcs_last_last.translator(zeq_list,zeq1_list)
 
-            last_value = xWell[i]+yWell[i]+zWell[i]
+        xWell = funcs_last_last.translator(xeq_list, xeq1_list)
+        yWell = funcs_last_last.translator(yeq_list, yeq1_list)
+        zWell = funcs_last_last.translator(zeq_list, zeq1_list)
+        for i in range(len(commandsX)):
+
+            last_value = ((xWell[i])**3)*((yWell[i]**2))*zWell[i]
             last_list.append(last_value)
+            print(f"{i}\tx:{xWell}\ty:{yWell}\tz:{zWell}")
 
         max_value = 0
         last_of = 99
@@ -95,9 +97,6 @@ while count < 1500:
 
         cv2.putText(img, commandsX[last_of], (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
 
-
-    cv2.putText(img, "__________", (160, 130), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
-    cv2.putText(img, "__________", (160, 380), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)

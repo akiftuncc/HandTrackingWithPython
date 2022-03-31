@@ -1,3 +1,4 @@
+# Reads your hands' x,y,z values and saves them to txt files
 import cv2
 import mediapipe as mp
 
@@ -6,10 +7,10 @@ mpHands = mp.solutions.hands
 hands = mpHands.Hands()
 liste = []
 a  = ""
-frames = 500
-xlistesi = open("D:/Users/akif/PycharmProjects/HandTrackingProject/x.txt","w")
-ylistesi = open("D:/Users/akif/PycharmProjects/HandTrackingProject/y.txt","w")
-zlistesi = open("D:/Users/akif/PycharmProjects/HandTrackingProject/z.txt","w")
+frames = 1000   # you can chane how many frames do you want to save
+xlistesi = open("x.txt","w")
+ylistesi = open("y.txt","w")
+zlistesi = open("z.txt","w")
 
 count = 0
 while count < frames:

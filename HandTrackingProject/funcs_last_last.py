@@ -1,4 +1,4 @@
-
+# Some funcs
 def listappender(xyztext,xyzlist):
     for j in xyztext:
         xyzlist[len(xyzlist)-1].append(float(j[:-1]))
@@ -27,7 +27,7 @@ def translator(currentlist,avglist):   #zeqlist   zeq1list
             for k in range(21):
                 a = currentlist[j][k]
                 b = avglist[i][j][k]
-                if a*13/10 > b and a*7/10 < b:
+                if a*103/100 > b and a*97/100 < b:
                     count+=1
         liste.append(count)
     return liste
