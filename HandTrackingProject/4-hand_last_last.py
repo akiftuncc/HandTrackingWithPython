@@ -2,9 +2,26 @@ import cv2
 import mediapipe as mp
 import funcs_last_last
 
-commandsX = ["peaceX","fistX","fivefingersX"] #write txt files here
-commandsY = ["PeaceY","fistY","fivefingersY"]
-commandsZ = ["peaceZ","fistZ","fivefingersZ"]
+xnames = open("txtFiles/0_Xnames.txt", "r")
+ynames = open("txtFiles/0_Ynames.txt", "r")
+znames = open("txtFiles/0_Znames.txt", "r")
+
+strX = ""
+strY = ""
+strZ = ""
+for i in xnames:
+    strX+=i
+for i in ynames:
+    strY+=i
+for i in znames:
+    strZ+=i
+
+splitX = strX.split("\n")
+splitY = strY.split("\n")
+splitZ = strZ.split("\n")
+commandsX = splitX[1:]
+commandsY = splitY[1:]
+commandsZ = splitZ[1:]
 
 xortlist = []
 yortlist = []
@@ -85,7 +102,6 @@ while count < 1500:
 
             last_value = ((xWell[i])**3)*((yWell[i]**2))*zWell[i]
             last_list.append(last_value)
-            print(f"{i}\tx:{xWell}\ty:{yWell}\tz:{zWell}")
 
         max_value = 0
         last_of = 99
@@ -94,9 +110,11 @@ while count < 1500:
                 max_value = last_list[i]
                 last_of = i
 
+        for i in range(len(commandsX)):
+            if commandsX[last_of] == commandsX[i]+"back":
+                last_of = i
 
         cv2.putText(img, commandsX[last_of], (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
-
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)

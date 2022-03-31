@@ -5,9 +5,9 @@ xlistesi = open("x.txt","r")
 ylistesi = open("y.txt","r")
 zlistesi = open("z.txt","r")
 
-x1listesi = open("x1.txt","w")
-y1listesi = open("y1.txt","w")
-z1listesi = open("z1.txt","w")
+x1listesi = open("txtFiles/x1.txt","w")
+y1listesi = open("txtFiles/y1.txt","w")
+z1listesi = open("txtFiles/z1.txt","w")
 
 xlist = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ylist = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -46,3 +46,7 @@ zlistesi.close()
 x1listesi.close()
 y1listesi.close()
 z1listesi.close()
+
+
+
+
