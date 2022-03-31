@@ -1,6 +1,8 @@
 import cv2
 import mediapipe as mp
 import funcs_last_last
+import statistics
+from statistics import mode
 
 xnames = open("txtFiles/0_Xnames.txt", "r")
 ynames = open("txtFiles/0_Ynames.txt", "r")
@@ -52,6 +54,9 @@ for i in range(len(commandsX)):
         yeq1_list[i].append([])
         zeq1_list[i].append([])
 
+def most_common(List):
+    return(mode(List))
+
 funcs_last_last.listminus(xortlist,xeq1_list) #xeq1_list'i oluşturur (alınan ortalamaların farkı)  ortalama değerler için olan fark
 funcs_last_last.listminus(yortlist,yeq1_list)
 funcs_last_last.listminus(zortlist,zeq1_list)
@@ -62,6 +67,7 @@ hands = mpHands.Hands()
 
 yazi = " "
 count = 0
+countlist = []
 while count < 1500:
     succes, img = cap.read()
     imgRGB = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
@@ -73,7 +79,6 @@ while count < 1500:
     xeq_list = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
     yeq_list = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
     zeq_list = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
-
     if results.multi_hand_landmarks:
         count += 1
         a = results.multi_hand_landmarks
@@ -104,17 +109,24 @@ while count < 1500:
             last_list.append(last_value)
 
         max_value = 0
-        last_of = 99
+        last_of = 0
         for i in range(len(commandsX)):
             if max_value < last_list[i]:
                 max_value = last_list[i]
                 last_of = i
 
         for i in range(len(commandsX)):
-            if commandsX[last_of] == commandsX[i]+"back":
+            if commandsX[last_of] == commandsX[i]+"1" or commandsX[last_of] == commandsX[i]+"2" or commandsX[last_of] == commandsX[i]+"3" or commandsX[last_of] == commandsX[i]+"4" or commandsX[last_of] == commandsX[i]+"5" or commandsX[last_of] == commandsX[i]+"6" or commandsX[last_of] == commandsX[i]+"7" or commandsX[last_of] == commandsX[i]+"8" or commandsX[last_of] == commandsX[i]+"9" or commandsX[last_of] == commandsX[i]+"10" or commandsX[last_of] == commandsX[i]+"11" :
                 last_of = i
+                break
 
-        cv2.putText(img, commandsX[last_of], (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
+        if count > 5:
+            sena = most_common(countlist)
+            countlist.pop(0)
+            cv2.putText(img, commandsX[sena], (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 5, 255), 3)
+
+        countlist.append(last_of)
+
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)

@@ -27,7 +27,7 @@ def translator(currentlist,avglist):   #zeqlist   zeq1list
             for k in range(21):
                 a = currentlist[j][k]
                 b = avglist[i][j][k]
-                if a*103/100 > b and a*97/100 < b:
+                if a*110/100 > b and a*91/100 < b:
                     count+=1
         liste.append(count)
     return liste

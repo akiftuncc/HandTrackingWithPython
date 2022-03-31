@@ -11,6 +11,7 @@ To Save A New Hand Location:
 
 
 !!Record the position of your own hand for better results.!!
+for now only works with 1 hand
 
 
 To Test:
