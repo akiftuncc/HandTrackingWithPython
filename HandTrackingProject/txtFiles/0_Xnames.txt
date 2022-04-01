@@ -52,3 +52,4 @@ thumbs_up
 thumbs_up1
 thumbs_up2
 hole
+gun

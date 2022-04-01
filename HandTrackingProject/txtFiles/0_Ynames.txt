@@ -52,3 +52,4 @@ thumbs_upY
 thumbs_upY1
 thumbs_upY2
 holeY
+gunY
