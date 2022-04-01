@@ -105,7 +105,7 @@ while count < 1500:
         zWell = funcs_last_last.translator(zeq_list, zeq1_list)
         for i in range(len(commandsX)):
 
-            last_value = ((xWell[i])**3)*((yWell[i]**2))*zWell[i]
+            last_value = xWell[i]*yWell[i]*zWell[i]
             last_list.append(last_value)
 
         max_value = 0

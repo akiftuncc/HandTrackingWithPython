@@ -41,3 +41,14 @@ rockY1
 rockY2
 rockY3
 rockY4
+1fingerY
+1fingerY1
+1fingerY2
+1fingerY3
+1fingerY4
+1fingerY5
+peaceY4
+thumbs_upY
+thumbs_upY1
+thumbs_upY2
+senaya-girsinY
