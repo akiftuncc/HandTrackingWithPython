@@ -53,3 +53,6 @@ thumbs_up1
 thumbs_up2
 hole
 gun
+hole1
+hole2
+hole3

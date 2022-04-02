@@ -53,3 +53,6 @@ thumbs_upZ1
 thumbs_upZ2
 holeZ
 gunZ
+holeZ1
+holeZ2
+holeZ3
