@@ -60,3 +60,4 @@ gunY1
 gunY2
 wolfY
 wolfY1
+wolfY2

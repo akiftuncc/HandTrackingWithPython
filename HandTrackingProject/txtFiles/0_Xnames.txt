@@ -60,3 +60,4 @@ gun1
 gun2
 wolf
 wolf1
+wolf2
