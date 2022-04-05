@@ -58,3 +58,4 @@ holeY2
 holeY3
 gunY1
 gunY2
+wolfY

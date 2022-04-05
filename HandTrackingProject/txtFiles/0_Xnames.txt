@@ -58,3 +58,4 @@ hole2
 hole3
 gun1
 gun2
+wolf
