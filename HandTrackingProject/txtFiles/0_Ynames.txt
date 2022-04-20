@@ -61,3 +61,4 @@ gunY2
 wolfY
 wolfY1
 wolfY2
+thumbs_upY3

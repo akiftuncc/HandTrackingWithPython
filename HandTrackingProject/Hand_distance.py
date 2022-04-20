@@ -20,7 +20,7 @@ while True:
         a = results.multi_hand_landmarks
         liste.append(a[0].landmark)
         q = a[0].landmark
-        print(q[0])
+        print(type(q[0]))
 
     cTime = time.time()
     fps = round(1/(cTime-pTime),5)

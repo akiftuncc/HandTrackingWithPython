@@ -61,3 +61,4 @@ gun2
 wolf
 wolf1
 wolf2
+thumbs_up3
